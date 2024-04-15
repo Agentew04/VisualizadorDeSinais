@@ -9,21 +9,42 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Margin="5"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    MinWidth="200">
-            <Label Content="Sequência de bits"/>
-            <TextBox x:Name="bitSequenceTextBox"/>
-            <Button Content="Gerar Sinal" Click="Button_Click"
-                    Margin="5"
-                    />
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0" x:Name="codificacaoComboBox"
+                      Padding="2" Margin="5"
+                      MinWidth="200">
+                <ComboBox.Items>
+                    <ComboBoxItem Content="NRZ-I" />
+                    <ComboBoxItem Content="NRZ-L" />
+                    <ComboBoxItem Content="AMI" />
+                    <ComboBoxItem Content="Pseudoternário" />
+                    <ComboBoxItem Content="Manchester" />
+                    <ComboBoxItem Content="Manchester Diferencial" />
+                    <ComboBoxItem Content="x" />
+                    <ComboBoxItem Content="y" />
+                    <ComboBoxItem Content="z" />
+                </ComboBox.Items>
+            </ComboBox>
+    
+            <TextBox Grid.Column="1" x:Name="bitSequenceTextBox"
+                     Padding="2" Margin="5"/>
+
+            <Button Grid.Column="2" Content="Gerar" x:Name="gerarButton"
+                    Padding="2" Margin="5" MinWidth="150"
+                    Click="Button_Click"/>
+        </Grid>
+        
         <Border Grid.Row="1" Margin="5">
-            <lvc:CartesianChart Series="{Binding Series}">
+            <lvc:CartesianChart Series="{Binding SeriesCollection}">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Title="Tempo" Foreground="Black"/>
                 </lvc:CartesianChart.AxisX>
