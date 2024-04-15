@@ -20,5 +20,10 @@ namespace VisualizadorDeSinais {
         }
 
         public Series Series { get; set; }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bitSequenceTextBox.Text = bitSequenceTextBox.Text.Replace(" ", "");
+        }
     }
 }

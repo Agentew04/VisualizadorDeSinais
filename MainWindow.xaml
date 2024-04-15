@@ -18,6 +18,9 @@
                     MinWidth="200">
             <Label Content="Sequência de bits"/>
             <TextBox x:Name="bitSequenceTextBox"/>
+            <Button Content="Gerar Sinal" Click="Button_Click"
+                    Margin="5"
+                    />
         </StackPanel>
         <Border Grid.Row="1" Margin="5">
             <lvc:CartesianChart Series="{Binding Series}">
