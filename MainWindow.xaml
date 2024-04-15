@@ -4,9 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VisualizadorDeSinais"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Margin="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    MinWidth="200">
+            <Label Content="Sequência de bits"/>
+            <TextBox x:Name="bitSequenceTextBox"/>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="5">
+            <lvc:CartesianChart Series="{Binding Series}">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Tempo" Foreground="Black"/>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Amplitude" Foreground="Black"/>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </Border>
     </Grid>
 </Window>

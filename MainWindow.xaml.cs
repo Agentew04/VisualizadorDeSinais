@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using LiveCharts.Wpf;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,5 +18,7 @@ namespace VisualizadorDeSinais {
         public MainWindow() {
             InitializeComponent();
         }
+
+        public Series Series { get; set; }
     }
 }
