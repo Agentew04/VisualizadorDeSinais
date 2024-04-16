@@ -43,7 +43,9 @@ public partial class MainWindow : Window {
 
         // registra todos os servicos de codificacao
         codificationProvider
-            .RegisterCodification<NoCodification>("");
+            .RegisterCodification<NoCodification>("") // <- remover essa linha antes de enviar
+            .RegisterCodification<NRZLCodification>("NRZ-L")
+            .RegisterCodification<NRZICodification>("NRZ-I");
 
         SeriesCollection = [];
 
@@ -65,7 +67,7 @@ public partial class MainWindow : Window {
             return;
         }
 
-        ILineCodification? codification = codificationProvider.GetCodification(/*selected.Content.ToString() ?? */"");
+        ILineCodification? codification = codificationProvider.GetCodification(selected.Content.ToString() ?? "");
         if (codification is null) { 
             MessageBox.Show(
                 "Modo de codificação não encontrado",
