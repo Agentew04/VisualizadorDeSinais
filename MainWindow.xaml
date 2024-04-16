@@ -45,12 +45,12 @@
         </Grid>
         
         <Border Grid.Row="1" Margin="5">
-            <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Top">
+            <lvc:CartesianChart x:Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Top">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Tempo" Foreground="Black" LabelFormatter="{Binding YFormatter}"/>
+                    <lvc:Axis Title="Tempo" Foreground="Black" Labels="{Binding Labels}"/>
                 </lvc:CartesianChart.AxisX>
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Amplitude" Foreground="Black" Labels="{Binding Labels}"/>
+                    <lvc:Axis Title="Amplitude" Foreground="Black" LabelFormatter="{Binding YFormatter}"/>
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
         </Border>

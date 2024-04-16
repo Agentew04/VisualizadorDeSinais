@@ -28,7 +28,7 @@ public partial class MainWindow : Window {
     /// <summary>
     /// Lambda para formatar o texto dos valores no eixo Y
     /// </summary>
-    public Func<double, string> YFormatter { get; set; }
+    public Func<double, string> YFormatter { get; set; } = x => $"{(int)Math.Round(x)} V";
 
     /// <summary>
     /// Textos que aparecem no eixo X
@@ -81,8 +81,11 @@ public partial class MainWindow : Window {
         // montar a visualizacao
         var series = new StepLineSeries {
             Title = $"Codificação {selected.Content}",
-            Values = new ChartValues<int>(codified)
+            Values = new ChartValues<int>(codified),
         };
+        chart.AxisY[0].MinValue = codification.GetStates().Min();
+        chart.AxisY[0].MaxValue = codification.GetStates().Max();
+        chart.AxisY[0].Separator.Step = 1;
         SeriesCollection.Clear();
         SeriesCollection.Add(series);
         Labels = Enumerable.Range(0, codified.Count).Select(x => x.ToString()).ToArray();
