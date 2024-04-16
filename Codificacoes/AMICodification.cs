@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 namespace VisualizadorDeSinais.Codificacoes;
 
 /// <summary>
-/// Implementa a codificacao de linha NRZ-I.
+/// Implementa a codificacao de linha AMI.
 /// </summary>
-/// <remarks>NRZ-I significa No return to Zero - Invert</remarks>
-internal class NRZICodification : ILineCodification {
+internal class AMICodification : ILineCodification {
     public List<int> Codify(List<int> bitSequence) {
+        int lastPositiveState = 1; // 1 para positivo e -1 para negativo   
+
         List<int> newSeq = [];
         for(int i=0; i<bitSequence.Count; i++) {
-            int lastState = newSeq.Count > 0 ? newSeq[^1] : 1;
             if (bitSequence[i] == 1) {
-                newSeq.Add(lastState * -1);
-            } else { 
-                newSeq.Add(lastState);
+                newSeq.Add(lastPositiveState);
+                lastPositiveState *= -1;
+            } else {
+                newSeq.Add(0);
             }
         }
         return newSeq;

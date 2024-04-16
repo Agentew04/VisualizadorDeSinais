@@ -45,7 +45,9 @@ public partial class MainWindow : Window {
         codificationProvider
             .RegisterCodification<NoCodification>("") // <- remover essa linha antes de enviar
             .RegisterCodification<NRZLCodification>("NRZ-L")
-            .RegisterCodification<NRZICodification>("NRZ-I");
+            .RegisterCodification<NRZICodification>("NRZ-I")
+            .RegisterCodification<AMICodification>("AMI")
+            .RegisterCodification<PseudoTernaryCodification>("Pseudoternário");
 
         SeriesCollection = [];
 
@@ -83,12 +85,21 @@ public partial class MainWindow : Window {
         // montar a visualizacao
         var series = new StepLineSeries {
             Title = $"Codificação {selected.Content}",
-            Values = new ChartValues<int>(codified),
+            Values = new ChartValues<int>(codified)
         };
         chart.AxisY[0].MinValue = codification.GetStates().Min();
         chart.AxisY[0].MaxValue = codification.GetStates().Max();
         chart.AxisY[0].Separator.Step = 1;
         SeriesCollection.Clear();
+        SeriesCollection.Add(new LineSeries {
+            Title = "Zero",
+            Values = new ChartValues<int>(codified.Select(x => 0)),
+            Fill = System.Windows.Media.Brushes.Transparent,
+            StrokeDashArray = new System.Windows.Media.DoubleCollection(new double[] { 2 }),
+            StrokeThickness = 1,
+            PointGeometry = null,
+            Stroke = System.Windows.Media.Brushes.Black
+        });
         SeriesCollection.Add(series);
         Labels = Enumerable.Range(0, codified.Count).Select(x => x.ToString()).ToArray();
     }
