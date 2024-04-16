@@ -45,13 +45,7 @@ public partial class MainWindow : Window {
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        StringBuilder sb = new StringBuilder();
-        foreach (var item in bitSequenceTextBox.Text) {
-            if (item == '0' || item == '1') {
-                sb.Append(item);
-            }
-        }
-        List<char> bitSeq = sb.ToString().ToList();
+        List<int> bits = GetBitSequence();
 
         if (codificacaoComboBox.SelectedItem is not ComboBoxItem selected) {
             MessageBox.Show(
@@ -63,6 +57,16 @@ public partial class MainWindow : Window {
             return;
         }
 
+    }
+
+    /// <summary>
+    /// Retorna uma lista de 0 e 1 a partir do texto da caixa de texto
+    /// </summary>
+    private List<int> GetBitSequence() {
+        return bitSequenceTextBox.Text
+            .Where(x => x == '0' || x == '1')
+            .Select(x => int.Parse(x.ToString()))
+            .ToList();
     }
 
     public SeriesCollection SeriesCollection { get; set; }
