@@ -3,6 +3,8 @@ using LiveCharts.Wpf;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml;
+using VisualizadorDeSinais.Codificacoes;
 
 namespace VisualizadorDeSinais;
 
@@ -10,36 +12,42 @@ namespace VisualizadorDeSinais;
 /// Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window {
+
+    #region Variables
+
+    /// <summary>
+    /// Gerenciador de codificacoes
+    /// </summary>
+    private CodificationProvider codificationProvider = new();
+
+    /// <summary>
+    /// Lista de Series no grafico
+    /// </summary>
+    public SeriesCollection SeriesCollection { get; set; }
+
+    /// <summary>
+    /// Lambda para formatar o texto dos valores no eixo Y
+    /// </summary>
+    public Func<double, string> YFormatter { get; set; }
+
+    /// <summary>
+    /// Textos que aparecem no eixo X
+    /// </summary>
+    public string[] Labels { get; set; }
+
+    #endregion
+
     public MainWindow() {
         // componentes do front estao disponiveis apos essa call
-        InitializeComponent(); 
+        InitializeComponent();
 
-        SeriesCollection = new SeriesCollection
-{
-            new LineSeries
-            {
-                Title = "Series 1",
-                Values = new ChartValues<double> { 4, 6, 5, 2 ,7 }
-            },
-            new LineSeries
-            {
-                Title = "Series 2",
-                Values = new ChartValues<double> { 6, 7, 3, 4 ,6 }
-            }
-        };
+        // registra todos os servicos de codificacao
+        codificationProvider
+            .RegisterCodification<NoCodification>("");
 
-        Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
-        YFormatter = value => value.ToString("C");
+        SeriesCollection = [];
 
-        //modifying the series collection will animate and update the chart
-        SeriesCollection.Add(new LineSeries {
-            Values = new ChartValues<double> { 5, 3, 2, 4 },
-            LineSmoothness = 0 //straight lines, 1 really smooth lines
-        });
-
-        //modifying any series values will also animate and update the chart
-        SeriesCollection[2].Values.Add(5d);
-
+        // Define o contexto das Bindings para o xaml e code-behind
         DataContext = this;
     }
 
@@ -57,6 +65,27 @@ public partial class MainWindow : Window {
             return;
         }
 
+        ILineCodification? codification = codificationProvider.GetCodification(/*selected.Content.ToString() ?? */"");
+        if (codification is null) { 
+            MessageBox.Show(
+                "Modo de codificação não encontrado",
+                "Erro!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Exclamation
+            );
+            return;
+        }
+
+        List<int> codified = codification.Codify(bits);
+
+        // montar a visualizacao
+        var series = new StepLineSeries {
+            Title = $"Codificação {selected.Content}",
+            Values = new ChartValues<int>(codified)
+        };
+        SeriesCollection.Clear();
+        SeriesCollection.Add(series);
+        Labels = Enumerable.Range(0, codified.Count).Select(x => x.ToString()).ToArray();
     }
 
     /// <summary>
@@ -68,9 +97,5 @@ public partial class MainWindow : Window {
             .Select(x => int.Parse(x.ToString()))
             .ToList();
     }
-
-    public SeriesCollection SeriesCollection { get; set; }
-    public string[] Labels { get; set; }
-    public Func<double, string> YFormatter { get; set; }
 
 }
