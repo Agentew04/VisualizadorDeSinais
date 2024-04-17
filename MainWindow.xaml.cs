@@ -38,7 +38,7 @@ public partial class MainWindow : Window {
     #endregion
 
     public MainWindow() {
-        // componentes do front estao disponiveis apos essa call
+        // componentes do=ont estao disponiveis apos essa call
         InitializeComponent();
 
         // registra todos os servicos de codificacao
@@ -47,7 +47,8 @@ public partial class MainWindow : Window {
             .RegisterCodification<NRZLCodification>("NRZ-L")
             .RegisterCodification<NRZICodification>("NRZ-I")
             .RegisterCodification<AMICodification>("AMI")
-            .RegisterCodification<PseudoTernaryCodification>("Pseudoternário");
+            .RegisterCodification<PseudoTernaryCodification>("Pseudoternário")
+            .RegisterCodification<ManchesterCodification>("Manchester");
 
         SeriesCollection = [];
 
