@@ -22,7 +22,7 @@
 
             <ComboBox Grid.Column="0" x:Name="codificacaoComboBox"
                       Padding="2" Margin="5"
-                      MinWidth="200">
+                      MinWidth="200" SelectionChanged="OnSelectChange">
                 <ComboBox.Items>
                     <ComboBoxItem Content="NRZ-I" />
                     <ComboBoxItem Content="NRZ-L" />

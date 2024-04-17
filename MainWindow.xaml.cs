@@ -51,7 +51,8 @@ public partial class MainWindow : Window {
             .RegisterCodification<NRZICodification>("NRZ-I")
             .RegisterCodification<AMICodification>("AMI")
             .RegisterCodification<PseudoTernaryCodification>("Pseudoternário")
-            .RegisterCodification<ManchesterCodification>("Manchester");
+            .RegisterCodification<ManchesterCodification>("Manchester")
+            .RegisterCodification<ManchesterDiferencialCodification>("Manchester Diferencial");
 
         SeriesCollection = [];
 
@@ -81,6 +82,17 @@ public partial class MainWindow : Window {
                 MessageBoxButton.OK,
                 MessageBoxImage.Exclamation
             );
+            return;
+        }
+
+        if (bits.Count == 0)
+        {
+            MessageBox.Show(
+                "Insira uma sequência de bits",
+                "Erro!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Exclamation
+        );
             return;
         }
 
@@ -128,6 +140,61 @@ public partial class MainWindow : Window {
             yield return start + i * step;
         }
         
+    }
+
+    private void OnSelectChange(object sender, SelectionChangedEventArgs e)
+    {
+        List<int> bits = GetBitSequence();
+
+        if (codificacaoComboBox.SelectedItem is not ComboBoxItem selected)
+        {
+            MessageBox.Show(
+                "Selecione um modo de codificação",
+                "Erro!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Exclamation
+            );
+            return;
+        }
+
+        ILineCodification? codification = codificationProvider.GetCodification(selected.Content.ToString() ?? "");
+        if (codification is null)
+        {
+            MessageBox.Show(
+                "Modo de codificação não encontrado",
+                "Erro!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Exclamation
+            );
+            return;
+        }
+
+        if (bits.Count == 0)
+        {
+            MessageBox.Show(
+                "Insira uma sequência de bits",
+                "Erro!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Exclamation
+        );
+            return;
+        }
+
+        List<int> codified = codification.Codify(bits);
+
+        var points = new ChartValues<ObservablePoint>(codified.Select((x, i) => new ObservablePoint((i) * codification.GetFrequency(), x)));
+
+        // montar a visualizacao
+        var series = new StepLineSeries
+        {
+            Title = $"Codificação {selected.Content}",
+            Values = points,
+        };
+        chart.AxisY[0].MinValue = codification.GetStates().Min();
+        chart.AxisY[0].MaxValue = codification.GetStates().Max();
+        chart.AxisY[0].Separator.Step = 1;
+        SeriesCollection.Clear();
+        SeriesCollection.Add(series);
     }
 
 }
