@@ -24,7 +24,7 @@ internal class NRZICodification : ILineCodification {
         return newSeq;
     }
 
-    public int GetFrequency() {
+    public double GetFrequency() {
         return 1;
     }
 

@@ -29,8 +29,8 @@ internal class ManchesterCodification : ILineCodification {
 		return manchesterSequence;
 		}
 
-    public int GetFrequency(){
-        return 2;
+    public double GetFrequency(){
+        return 0.5;
     }
 
     public List<int> GetStates(){

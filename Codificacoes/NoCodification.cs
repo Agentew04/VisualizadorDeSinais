@@ -10,7 +10,7 @@ internal class NoCodification : ILineCodification {
         return bitSequence;
     }
 
-    public int GetFrequency() {
+    public double GetFrequency() {
         return 1;
     }
 

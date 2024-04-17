@@ -20,7 +20,7 @@ internal interface ILineCodification {
     /// inicial, deve ser 1. Se for o dobro, como no caso
     /// do Manchester diferencial, deve ser 2.
     /// </summary>
-    public int GetFrequency();
+    public double GetFrequency();
 
     /// <summary>
     /// Deve retornar os estados possiveis da codificacao.

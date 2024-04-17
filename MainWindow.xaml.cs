@@ -1,5 +1,8 @@
 ﻿using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using System.Collections;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,26 +86,29 @@ public partial class MainWindow : Window {
 
         List<int> codified = codification.Codify(bits);
 
+        var points = new ChartValues<ObservablePoint>(codified.Select((x, i) => new ObservablePoint((i) * codification.GetFrequency(), x)));
+            
         // montar a visualizacao
         var series = new StepLineSeries {
             Title = $"Codificação {selected.Content}",
-            Values = new ChartValues<int>(codified)
+            Values = points,
         };
         chart.AxisY[0].MinValue = codification.GetStates().Min();
         chart.AxisY[0].MaxValue = codification.GetStates().Max();
         chart.AxisY[0].Separator.Step = 1;
         SeriesCollection.Clear();
-        SeriesCollection.Add(new LineSeries {
-            Title = "Zero",
-            Values = new ChartValues<int>(codified.Select(x => 0)),
-            Fill = System.Windows.Media.Brushes.Transparent,
-            StrokeDashArray = new System.Windows.Media.DoubleCollection(new double[] { 2 }),
-            StrokeThickness = 1,
-            PointGeometry = null,
-            Stroke = System.Windows.Media.Brushes.Black
-        });
+        //SeriesCollection.Add(new LineSeries {
+        //    Title = "Zero",
+        //    Values = new ChartValues<int>(codified.Select(x => 0)),
+        //    Fill = System.Windows.Media.Brushes.Transparent,
+        //    StrokeDashArray = new System.Windows.Media.DoubleCollection(new double[] { 2 }),
+        //    StrokeThickness = 1,
+        //    PointGeometry = null,
+        //    Stroke = System.Windows.Media.Brushes.Black
+        //});
         SeriesCollection.Add(series);
-        Labels = Enumerable.Range(0, codified.Count).Select(x => x.ToString()).ToArray();
+        //chart.AxisX[0].Separator.Step = codification.GetFrequency();
+        //Labels = Range(0, codified.Count, codification.GetFrequency()).Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray();
     }
 
     /// <summary>
@@ -113,6 +119,15 @@ public partial class MainWindow : Window {
             .Where(x => x == '0' || x == '1')
             .Select(x => int.Parse(x.ToString()))
             .ToList();
+    }
+
+    private static IEnumerable<double> Range(double start, double count, double step)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            yield return start + i * step;
+        }
+        
     }
 
 }

@@ -47,7 +47,7 @@
         <Border Grid.Row="1" Margin="5">
             <lvc:CartesianChart x:Name="chart" Series="{Binding SeriesCollection}" LegendLocation="Top">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Tempo" Foreground="Black" Labels="{Binding Labels}"/>
+                    <lvc:Axis Title="Tempo" Foreground="Black" Labels="{Binding Labels, Mode=OneWay}"/>
                 </lvc:CartesianChart.AxisX>
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis Title="Amplitude" Foreground="Black" LabelFormatter="{Binding YFormatter}"/>

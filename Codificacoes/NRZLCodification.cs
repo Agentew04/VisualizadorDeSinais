@@ -17,7 +17,7 @@ internal class NRZLCodification : ILineCodification {
             .ToList();
     }
 
-    public int GetFrequency() {
+    public double GetFrequency() {
         return 1;
     }
 
