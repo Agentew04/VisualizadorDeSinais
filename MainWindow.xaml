@@ -30,7 +30,7 @@
                     <ComboBoxItem Content="Pseudoternário" />
                     <ComboBoxItem Content="Manchester" />
                     <ComboBoxItem Content="Manchester Diferencial" />
-                    <ComboBoxItem Content="x" />
+                    <ComboBoxItem Content="CMI" />
                     <ComboBoxItem Content="y" />
                     <ComboBoxItem Content="z" />
                 </ComboBox.Items>

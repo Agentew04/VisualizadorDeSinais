@@ -52,7 +52,8 @@ public partial class MainWindow : Window {
             .RegisterCodification<AMICodification>("AMI")
             .RegisterCodification<PseudoTernaryCodification>("Pseudoternário")
             .RegisterCodification<ManchesterCodification>("Manchester")
-            .RegisterCodification<ManchesterDiferencialCodification>("Manchester Diferencial");
+            .RegisterCodification<ManchesterDiferencialCodification>("Manchester Diferencial")
+            .RegisterCodification<CMICodification>("CMI");
 
         SeriesCollection = [];
 
