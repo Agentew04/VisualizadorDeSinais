@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace VisualizadorDeSinais.Codificacoes; 
 internal class NoCodification : ILineCodification {
+    public string UserFriendlyName => "";
+
     public List<int> Codify(List<int> bitSequence) {
         return bitSequence;
     }
