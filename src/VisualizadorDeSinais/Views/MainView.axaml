@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:VisualizadorDeSinais.ViewModels"
+             xmlns:codif="using:VisualizadorDeSinais.Codificacoes"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="VisualizadorDeSinais.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -12,6 +13,11 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-   <ComboBox ItemsSource="{Binding Codifications}"/>
-  <!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+  <ComboBox ItemsSource="{Binding Codifications}">
+    <ComboBox.ItemTemplate>
+      <DataTemplate x:DataType="{Binding codif:ILineCodification}">
+        <TextBlock Text="{Binding UserFriendlyName}"/>
+      </DataTemplate>
+    </ComboBox.ItemTemplate>
+  </ComboBox>
 </UserControl>
