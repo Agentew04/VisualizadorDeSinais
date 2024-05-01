@@ -31,7 +31,7 @@
                     <ComboBoxItem Content="Manchester" />
                     <ComboBoxItem Content="Manchester Diferencial" />
                     <ComboBoxItem Content="CMI" />
-                    <ComboBoxItem Content="y" />
+                    <ComboBoxItem Content="HDB3" />
                     <ComboBoxItem Content="z" />
                 </ComboBox.Items>
             </ComboBox>
