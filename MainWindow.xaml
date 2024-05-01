@@ -32,7 +32,7 @@
                     <ComboBoxItem Content="Manchester Diferencial" />
                     <ComboBoxItem Content="CMI" />
                     <ComboBoxItem Content="HDB3" />
-                    <ComboBoxItem Content="2B1Q" />
+                    <ComboBoxItem Content="DOISB1Q" />
                 </ComboBox.Items>
             </ComboBox>
     

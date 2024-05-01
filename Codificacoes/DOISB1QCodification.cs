@@ -29,13 +29,13 @@ internal class DOISB1QCodification : ILineCodification
     private int MapTo2B1Q(int bit1, int bit2)
     {
         if (bit1 == 0 && bit2 == 0)
-            return -3;
-        else if (bit1 == 0 && bit2 == 1)
-            return -1;
-        else if (bit1 == 1 && bit2 == 0)
             return 1;
-        else if (bit1 == 1 && bit2 == 1)
+        else if (bit1 == 0 && bit2 == 1)
             return 3;
+        else if (bit1 == 1 && bit2 == 0)
+            return -1;
+        else if (bit1 == 1 && bit2 == 1)
+            return -3;
         else
             throw new ArgumentException("Invalid bit pair for 2B1Q codification.");
     }
