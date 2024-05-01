@@ -53,8 +53,10 @@ public partial class MainWindow : Window {
             .RegisterCodification<PseudoTernaryCodification>("Pseudoternário")
             .RegisterCodification<ManchesterCodification>("Manchester")
             .RegisterCodification<ManchesterDiferencialCodification>("Manchester Diferencial")
+            .RegisterCodification<CMICodification>("CMI")
             .RegisterCodification<HDB3Codification>("HDB3")
-            .RegisterCodification<CMICodification>("CMI");
+            .RegisterCodification<DOISB1QCodification>("2BQ1");
+            
 
         SeriesCollection = [];
 
