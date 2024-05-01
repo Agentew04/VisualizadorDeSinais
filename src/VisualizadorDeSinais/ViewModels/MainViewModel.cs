@@ -16,13 +16,14 @@ namespace VisualizadorDeSinais.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     public List<ILineCodification> Codifications { get; } = [
-        new AMICodification(),
-        new CMICodification(),
+        new NRZLCodification(),
+        new NRZICodification(),
         new ManchesterCodification(),
         new ManchesterDiferencialCodification(),
-        new NRZICodification(),
-        new NRZLCodification(),
-        new PseudoTernaryCodification()
+        new AMICodification(),
+        new PseudoTernaryCodification(),
+        new CMICodification(),
+        new HDB3Codification()
     ];
 
     [ObservableProperty]
