@@ -23,7 +23,8 @@ public partial class MainViewModel : ViewModelBase
         new AMICodification(),
         new PseudoTernaryCodification(),
         new CMICodification(),
-        new HDB3Codification()
+        new HDB3Codification(),
+        new PAM3Codification(),
     ];
 
     [ObservableProperty]
@@ -68,6 +69,11 @@ public partial class MainViewModel : ViewModelBase
         var series = new StepLineSeries<ObservablePoint> {
             Values = points
         };
+        if(points.Count > 50) {
+            series.GeometryStroke = null;
+            series.GeometryFill = null;
+        }
+
         ChartSeries.Clear(); // remove a serie anterior
         ChartSeries.Add(series);
 
