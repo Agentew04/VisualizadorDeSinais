@@ -100,6 +100,6 @@ internal class HDB3Codification : ILineCodification
 
     public List<int> GetStates()
     {
-        return new List<int> { -2, -1, 0, 1, 2 };
+        return [-1, 0, 1];
     }
 }

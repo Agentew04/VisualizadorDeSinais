@@ -36,6 +36,6 @@ internal class ManchesterDiferencialCodification : ILineCodification{
 
     public List<int> GetStates()
     {
-        return [-2, -1, 0, 1, 2];
+        return [-1, 0, 1];
     }
 }
