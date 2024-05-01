@@ -14,8 +14,9 @@ internal class NRZLCodification : ILineCodification {
 
     public string UserFriendlyName => "NRZ-L";
 
-    public string Description => "Non Return to Zero - Level (NRZ-L)\n" +
-        "Cada bit 1 é representado por um nível de tensão negativo e cada bit 0 é representado por um nível de tensão positivo.";
+    public string CompleteName => "Non Return to Zero - Level";
+
+    public string Description => "Cada bit 1 é representado por um nível de tensão negativo e cada bit 0 é representado por um nível de tensão positivo.";
 
     public List<int> Codify(List<int> bitSequence) {
         return bitSequence

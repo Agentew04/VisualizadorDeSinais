@@ -13,7 +13,10 @@ internal class AMICodification : ILineCodification {
 
     public string UserFriendlyName => "AMI";
 
-    public string Description => "Alternate Mark Inversion (AMI)\nBits 0 são voltagem 0V e bits 1 alternam ente +V e -V";
+    public string CompleteName => "Alternate Mark Inversion";
+
+    public string Description => "Bits 0 são voltagem 0V e bits 1 alternam ente +V e -V";
+
 
     public List<int> Codify(List<int> bitSequence) {
         int lastPositiveState = 1; // 1 para positivo e -1 para negativo   

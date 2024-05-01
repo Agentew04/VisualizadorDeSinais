@@ -24,6 +24,7 @@ public partial class MainViewModel : ViewModelBase
         new PseudoTernaryCodification(),
         new CMICodification(),
         new HDB3Codification(),
+        new DOISB1QCodification(),
         new PAM3Codification(),
     ];
 

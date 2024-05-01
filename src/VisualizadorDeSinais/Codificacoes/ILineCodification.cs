@@ -37,6 +37,11 @@ public interface ILineCodification {
     public string UserFriendlyName { get; }
 
     /// <summary>
+    /// O nome completo da codificacao sem abreviacoes.
+    /// </summary>
+    public string CompleteName { get; }
+
+    /// <summary>
     /// Uma descrição mais detalhada da codificação.
     /// Inclui observacoes da implementacao
     /// </summary>

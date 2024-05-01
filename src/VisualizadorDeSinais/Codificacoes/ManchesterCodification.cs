@@ -13,8 +13,9 @@ internal class ManchesterCodification : ILineCodification {
 
 	public string UserFriendlyName => "Manchester";
 
-    public string Description => "Manchester\n" +
-        "Cada bit é representado por dois níveis de tensão, um no meio do bit e outro no início/fim do bit.";
+	public string CompleteName => "Manchester";
+
+    public string Description => "Cada bit é representado por dois níveis de tensão, um no meio do bit e outro no início/fim do bit.";
 
     public List<int> Codify(List<int> bitSequence){
 		// sinal positivo: no meio do bit sinal vai de -v para +v

@@ -8,6 +8,8 @@ namespace VisualizadorDeSinais.Codificacoes;
 internal class NoCodification : ILineCodification {
     public string UserFriendlyName => "";
 
+    public string CompleteName => "";
+
     public string Description => "";
 
     public List<int> Codify(List<int> bitSequence) {

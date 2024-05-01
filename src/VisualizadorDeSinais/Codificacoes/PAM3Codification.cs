@@ -8,8 +8,9 @@ namespace VisualizadorDeSinais.Codificacoes;
 internal class PAM3Codification : ILineCodification {
     public string UserFriendlyName => "PAM 3";
 
-    public string Description => "Pulse Amplitude Modulation 3 (PAM3)\n" +
-        "Cada grupo de 3 bits é mapeado para dois símbolos de 3 estados(-V,0V,+V) cada. " +
+    public string CompleteName => "Pulse Amplitude Modulation 3";
+
+    public string Description => "Cada grupo de 3 bits é mapeado para dois símbolos de 3 estados(-V,0V,+V) cada. " +
         "Ínicio(SSD) e fim(ESD) de transmissões são representados por 2 sinais 0V seguidos.";
 
     private readonly Dictionary<(int, int, int), (int, int)> table = new (){
