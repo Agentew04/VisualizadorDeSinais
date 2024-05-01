@@ -23,7 +23,7 @@
       <ColumnDefinition Width="*"/>
       <ColumnDefinition Width="Auto"/>
     </Grid.ColumnDefinitions>
-    
+
     <!-- HEADER -->
     <ComboBox ItemsSource="{Binding Codifications}"
               Margin="5"
@@ -38,7 +38,23 @@
     <TextBox Grid.Column="1" Margin="5" Watermark="Digite a sequência binária aqui"
              TextChanged="TextBox_TextChanged"
              Text="{Binding BinaryText, Mode=TwoWay}"/>
-    
+    <Button Grid.Column="2" Margin="5"
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            Width="30" Height="30">
+      <Button.Content>
+        <Image Source="avares://VisualizadorDeSinais/Assets/outline_info_white_24dp.png"
+               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+               Margin="0"/>
+      </Button.Content>
+      <Button.Flyout>
+        <Flyout>
+          <TextBlock Text="{Binding SelectedCodification.Description}"
+                     TextWrapping="WrapWithOverflow"
+                     Width="200"/>
+        </Flyout>
+      </Button.Flyout>
+    </Button>
+
     <!-- CONTENT -->
     <lvc:CartesianChart Grid.Row="1" Grid.ColumnSpan="3"
                         Margin="5"
@@ -47,6 +63,6 @@
                         YAxes="{Binding AxisY}">
     </lvc:CartesianChart>
   </Grid>
-  
-  
+
+
 </UserControl>

@@ -14,6 +14,10 @@ internal class PseudoTernaryCodification : ILineCodification {
 
     public string UserFriendlyName => "Pseudo-Ternary";
 
+    public string Description => "Pseudo-Ternary\n" +
+        "Bits 0 são voltagem 0V e bits 1 alternam ente +V e -V. " +
+        "Basicamente o inverso do AMI";
+
     public List<int> Codify(List<int> bitSequence) {
         int lastPositiveState = 1; // 1 para positivo e -1 para negativo   
 

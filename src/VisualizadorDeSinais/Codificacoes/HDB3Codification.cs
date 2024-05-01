@@ -12,6 +12,11 @@ namespace VisualizadorDeSinais.Codificacoes;
 internal class HDB3Codification : ILineCodification {
     public string UserFriendlyName => "HDB3";
 
+    public string Description => "High-Density Bipolar 3 Zeros (HDB3)\n" +
+        "Substitui sequências de 4 zeros por sequências de 4 bits, " +
+        "onde o último bit é 0 e os outros 3 bits formam um pulso de polaridade " +
+        "oposta ao último pulso de polaridade oposta.";
+
     public List<int> Codify(List<int> bitSequence)
     {
         List<int> newSeq = new List<int>();

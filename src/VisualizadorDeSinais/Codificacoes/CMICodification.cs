@@ -9,6 +9,9 @@ internal class CMICodification : ILineCodification {
 
     public string UserFriendlyName => "CMI";
 
+    public string Description => "Coded Mark Inversion (CMI)\nBits 0 são metade 0V e metade +V. Bits 1 são " +
+        "níveis constantes que se alternam a cada bit.";
+
     public List<int> Codify(List<int> bitSequence) {
         int lastPositiveState = -1;
         List<int> newSeq = [];

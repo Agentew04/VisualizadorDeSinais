@@ -31,6 +31,15 @@ public interface ILineCodification {
     /// depois para melhor legibilidade do gráfico final.</returns>
     public List<int> GetStates();
 
+    /// <summary>
+    /// O nome da codificacao que aparece na interface.
+    /// </summary>
     public string UserFriendlyName { get; }
+
+    /// <summary>
+    /// Uma descrição mais detalhada da codificação.
+    /// Inclui observacoes da implementacao
+    /// </summary>
+    public string Description { get; }
 
 }

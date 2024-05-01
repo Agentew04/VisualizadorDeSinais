@@ -14,6 +14,9 @@ internal class NRZICodification : ILineCodification {
 
     public string UserFriendlyName => "NRZ-I";
 
+    public string Description => "Non Return to Zero - Invert (NRZ-I)\n" +
+        "Cada bit 1 inverte o sinal do bit anterior. Cada bit 0 mantém o sinal do bit anterior.";
+
     public List<int> Codify(List<int> bitSequence) {
         List<int> newSeq = [];
         for(int i=0; i<bitSequence.Count; i++) {

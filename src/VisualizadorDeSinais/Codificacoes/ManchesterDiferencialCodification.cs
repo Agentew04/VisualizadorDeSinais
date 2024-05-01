@@ -10,6 +10,11 @@ internal class ManchesterDiferencialCodification : ILineCodification{
 
     public string UserFriendlyName => "Manchester Diferencial";
 
+    public string Description => "Manchester Diferencial\n" +
+        "Cada bit é representado por dois níveis de tensão, um no meio do bit e outro no início/fim do bit. " +
+        "A diferença é que o sinal positivo é representado por uma transição no meio do bit e o sinal negativo " +
+        "é representado por uma transição no início/fim do bit.";
+
     public List<int> Codify(List<int> bitSequence)
     {
         List<int> manchesterSequence = [];

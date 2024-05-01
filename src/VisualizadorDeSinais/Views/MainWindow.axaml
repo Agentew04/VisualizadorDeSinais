@@ -7,6 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VisualizadorDeSinais.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="VisualizadorDeSinais">
+        Title="VisualizadorDeSinais"
+        RequestedThemeVariant="Dark">
         <views:MainView />
 </Window>
