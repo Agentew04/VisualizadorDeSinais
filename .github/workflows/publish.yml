@@ -1,0 +1,42 @@
+name: Publish to Github Pages
+
+on:
+  workflow_dispatch:  
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.x' # Or the version you are using
+
+      - name: Build and Publish Project
+        run: dotnet publish -r browser-wasm -c Release ./src/VisualizadorDeSinais.Browser/VisualizadorDeSinais.Browser.csproj
+        working-directory: ./src/VisualizadorDeSinais.Browser
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: wasm-artifact
+          path: ./src/VisualizadorDeSinais.Browser/bin/Release/net7.0/browser-wasm/AppBundle
+
+  # Deploy job
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
