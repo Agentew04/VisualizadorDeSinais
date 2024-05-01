@@ -8,7 +8,7 @@ namespace VisualizadorDeSinais.Codificacoes;
 
 internal class DOISB1QCodification : ILineCodification
 {
-    int previousLevel = 0;
+    int previousLevel = 1;
     public List<int> Codify(List<int> bitSequence)
     {
         List<int> codifiedSequence = new List<int>();
