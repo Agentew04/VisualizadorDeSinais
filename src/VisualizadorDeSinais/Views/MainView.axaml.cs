@@ -31,7 +31,7 @@ public partial class MainView : UserControl
         if (vm == null) {
             return;
         }
-
+        vm.SelectedCodification = vm.Codifications.ElementAt((sender as ComboBox)?.SelectedIndex ?? 0);
         vm.Codify();
     }
 }

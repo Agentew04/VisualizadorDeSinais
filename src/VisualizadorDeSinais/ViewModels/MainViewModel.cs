@@ -1,12 +1,18 @@
-﻿using Avalonia.Controls.Notifications;
+﻿using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Notifications;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using VisualizadorDeSinais.Codificacoes;
@@ -68,7 +74,8 @@ public partial class MainViewModel : ViewModelBase
         }
 
         var series = new StepLineSeries<ObservablePoint> {
-            Values = points
+            Values = points,
+            
         };
         if(points.Count > 50) {
             series.GeometryStroke = null;
@@ -78,11 +85,17 @@ public partial class MainViewModel : ViewModelBase
         ChartSeries.Clear(); // remove a serie anterior
         ChartSeries.Add(series);
 
+        SolidColorPaint verticalBrush = new() {
+            Color = new SkiaSharp.SKColor(127,127,127),
+            StrokeThickness = 1,
+        };
+
         // cria os eixos e seta max/min
         var x = new Axis {
             Labeler = labelerXAxis,
             MinStep = SelectedCodification.GetFrequency(),
-            MinLimit = 0
+            MinLimit = 0,
+            SeparatorsPaint = verticalBrush
         };
         var y = new Axis {
             Labeler = labelerYAxis,
@@ -90,6 +103,8 @@ public partial class MainViewModel : ViewModelBase
             MaxLimit = SelectedCodification.GetStates().Max(),
             MinLimit = SelectedCodification.GetStates().Min()
         };
+        Debug.WriteLine($"X: {x.SeparatorsPaint} Y: {y.SeparatorsAtCenter}");
+        
         AxisX.Clear();
         AxisX.Add(x);
         AxisY.Clear();

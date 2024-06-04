@@ -71,7 +71,8 @@
                         Margin="5"
                         Series="{Binding ChartSeries}"
                         XAxes="{Binding AxisX}"
-                        YAxes="{Binding AxisY}">
+                        YAxes="{Binding AxisY}"
+                        >
     </lvc:CartesianChart>
   </Grid>
 
